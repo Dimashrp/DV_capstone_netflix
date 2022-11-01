@@ -16,7 +16,7 @@ shinyServer(function(input,output){
       ggplot(data = data_1_fixed, mapping = aes(x = Quarter, 
                                                 y = Revenue, 
                                                 text = label))+
-      geom_line(group = 1, color = "Blue", fill= "Red") +
+      geom_line(group = 1, color = "purple") +
       geom_point() +
       scale_y_continuous(labels = scales::comma) +
       labs(title = "Total Revenue",
@@ -38,8 +38,8 @@ shinyServer(function(input,output){
                            fill = total_rating,
                            text = label)) + # tambahan parameter text
       geom_col() +
-      scale_fill_gradient(low = "red",
-                          high = "black") +
+      scale_fill_gradient(low = "pink",
+                          high = "purple") +
       labs(title = "Tv Show Rating",
            x = "Total Rating", 
            y = "Rating") +
@@ -64,8 +64,8 @@ shinyServer(function(input,output){
                            fill = total_rating,
                            text = label)) + # tambahan parameter text
       geom_col() +
-      scale_fill_gradient(low = "red",
-                          high = "black") +
+      scale_fill_gradient(low = "pink",
+                          high = "purple") +
       labs(title = "Movie Rating",
            x = "Total Rating", 
            y = "Rating") +
