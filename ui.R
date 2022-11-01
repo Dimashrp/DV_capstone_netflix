@@ -53,33 +53,26 @@ dashboardPage(skin = "purple",
                               icon = icon("tv"), 
                               color = "purple")
                     ),
-                    fluidRow(
-                      radioButtons(inputId = "asc_desc", label = "Sort", 
-                                   choices = list("asc","desc"),
-                                   selected = "desc")
-                    ),
                     
                     fluidRow( 
                       box(
-                           plotlyOutput(outputId = "plot_2")
+                           plotlyOutput(outputId = "plot_3")
                       ),
                       box(
-                           plotlyOutput(outputId = "plot_3")
+                           plotlyOutput(outputId = "plot_2")
                       )
                     
                   )),
                   
                   # --------- HALAMAN KEDUA: CHANNELS
                   tabItem(
-                    tabName = "Revenue",
-                    
-                    # --------- INPUT
+                    tabName = "revenue",
                     fluidRow(
                       box(width = 6,
                           height = 100,
-                        selectInput(inputId = "input_area", # input Id adalah Id atau dari fungsi selectInput
-                                    label = "Choose Area", # label adalah parameter untuk memberikan nama dari selectInput
-                                    choices = unique(data_1_fix$Area)) # choices adalah parameter untuk memberikan pilihan category apa saja yang bisa dipilih
+                        selectInput(inputId = "input_area", 
+                                    label = "Choose Area", 
+                                    choices = unique(data_1_fix$Area))
                       ),
                       box(
                         width = 6,
@@ -91,11 +84,10 @@ dashboardPage(skin = "purple",
                           max = max(data_1_fix$Year),
                           value = min(data_1_fix$Year),
                           sep = NULL
-                        ) # choices adalah parameter untuk memberikan pilihan category apa saja yang bisa dipilih
+                        )
                       )
                     ),
                     
-                    # --------- PLOT
                     fluidRow( 
                       box( width = 12,
                         plotlyOutput(outputId = "plot_1")
@@ -112,10 +104,6 @@ dashboardPage(skin = "purple",
                   tabItem(
                     tabName = "revenue_dataset",
                     DT::dataTableOutput(outputId = "table2")
-                  ),
-                  tabItem(
-                    tabName = "source_code",
-                    href = "https://shiny.rstudio.com/"
                   )
                   
                 )
