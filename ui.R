@@ -10,7 +10,7 @@ dashboardPage(skin = "purple",
                   menuItem(text = "Title",
                            tabName = "Title",
                            icon = icon("video")),
-                  
+                           
                   menuItem(text = "Revenue",
                            tabName = "revenue",
                            icon = icon("youtube")),
@@ -24,8 +24,8 @@ dashboardPage(skin = "purple",
                            icon = icon("table")),
                   
                   menuItem(text = "Source Code",
-                           tabName = "source_code",
-                           icon = icon("github"))
+                           icon = icon("github"),
+                           href = "https://github.com/Dimashrp/DV_capstone_netflix")
                 )
               ),
               
