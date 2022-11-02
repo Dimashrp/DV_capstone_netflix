@@ -10,7 +10,7 @@ shinyServer(function(input,output){
       summarise(Revenue = sum(Revenue)) %>%
       arrange(Quarter) %>% 
       mutate(label = glue("Quarter: {Quarter}
-                           Revenue: {scales::comma(Revenue)}"))
+                           Revenue: ${scales::comma(Revenue)}"))
   
     plot1 <- 
       ggplot(data = data_1_fixed, mapping = aes(x = Quarter, 
@@ -19,6 +19,7 @@ shinyServer(function(input,output){
       geom_line(group = 1, color = "purple") +
       geom_point() +
       scale_y_continuous(labels = scales::comma) +
+      scale_y_continuous(labels=scales::dollar_format())
       labs(title = "Total Revenue",
            x = "Quarter",
            y = "Revenue") +
