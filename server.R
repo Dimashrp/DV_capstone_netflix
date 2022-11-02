@@ -19,8 +19,8 @@ shinyServer(function(input,output){
       geom_line(group = 1, color = "purple") +
       geom_point() +
       scale_y_continuous(labels = scales::comma) +
-      scale_y_continuous(labels=scales::dollar_format())
-      labs(title = "Total Revenue",
+      scale_y_continuous(labels=scales::dollar_format())+
+      labs(title = paste("Total Revenue for", input$input_area, "Area", "Year", input$input_year),
            x = "Quarter",
            y = "Revenue") +
       theme_minimal() +
@@ -101,6 +101,37 @@ shinyServer(function(input,output){
   }
   )
   
+  
+ 
+    output$plot_4 <- renderPlotly({
+      
+      data_3_fixed <- 
+        data_3_fix %>%
+        filter(Area %in% input$input_area) %>%
+        filter(Year %in% input$input_year) %>%
+        group_by(Area, Quarter, Year) %>% 
+        summarise(Subscribers = sum(Subscribers)) %>%
+        arrange(Quarter) %>% 
+        mutate(label = glue("Quarter: {Quarter}
+                           Subscriber: {scales::comma(Subscribers)}"))
+      
+      plot4 <- 
+        ggplot(data = data_3_fixed, mapping = aes(x = Quarter, 
+                                                  y = Subscribers, 
+                                                  text = label))+
+        geom_line(group = 1, color = "pink") +
+        geom_point() +
+        scale_y_continuous(labels = scales::comma) +
+        labs(title = paste("Total Subscriber for", input$input_area, "Area", "Year", input$input_year),
+             x = "Quarter",
+             y = "Subscribers") +
+        theme_minimal() +
+        theme(text = element_text(size = 10, face="bold"))
+      
+      ggplotly(p = plot4, tooltip = "text")
+      
+  })
+  
   output$table1 <- renderDataTable({
 
     datatable(data_2_fix,
@@ -113,5 +144,12 @@ shinyServer(function(input,output){
     datatable(data_1_fix,
               options = list(scrollX = TRUE))
 
+  })
+  
+  output$table3 <- renderDataTable({
+    
+    datatable(data_3_fix,
+              options = list(scrollX = TRUE))
+    
   })
 })
