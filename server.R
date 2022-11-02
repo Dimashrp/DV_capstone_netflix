@@ -134,21 +134,21 @@ shinyServer(function(input,output){
   
   output$table1 <- renderDataTable({
 
-    datatable(data_2_fix,
+    datatable(data2,
               options = list(scrollX = TRUE))
 
   })
   
   output$table2 <- renderDataTable({
 
-    datatable(data_1_fix,
+    datatable(data1,
               options = list(scrollX = TRUE))
 
   })
   
   output$table3 <- renderDataTable({
     
-    datatable(data_3_fix,
+    datatable(data3,
               options = list(scrollX = TRUE))
     
   })
