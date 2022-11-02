@@ -31,6 +31,16 @@ shinyServer(function(input,output){
   
   output$plot_2 <- renderPlotly({
     
+    data_2_tv_show_plot <- 
+      data_2_fix %>% 
+      filter(type %in% "TV Show", !is.na(rating))%>% 
+      group_by(type, rating) %>% 
+      summarise(total_rating =  n())  %>%
+      ungroup() %>%
+      arrange(desc(total_rating))%>%
+      mutate(label = glue("Rating: {rating}
+                      Total: {total_rating}"))
+    
     plot2 <- 
       data_2_tv_show_plot %>% 
       ggplot(mapping = aes(y = reorder(rating, total_rating),
@@ -56,6 +66,16 @@ shinyServer(function(input,output){
   
   output$plot_3 <- renderPlotly({
     
+    
+    data_2_movie_plot <- 
+      data_2_fix %>% 
+      filter(type %in% "Movie",!is.na(rating))%>% 
+      group_by(type, rating) %>% 
+      summarise(total_rating =  n())  %>%
+      ungroup() %>%
+      arrange(desc(total_rating))%>%
+      mutate(label = glue("Rating: {rating}
+                      Total: {total_rating}"))
     
     plot3 <- 
       data_2_movie_plot %>% 
