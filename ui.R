@@ -7,11 +7,11 @@ dashboardPage(skin = "purple",
                 
                 sidebarMenu(
                   
-                  menuItem(text = "Title",
+                  menuItem(text = "Title Rating",
                            tabName = "Title",
                            icon = icon("video")),
                            
-                  menuItem(text = "Revenue",
+                  menuItem(text = "Revenue & Subscribers",
                            tabName = "revenue",
                            icon = icon("youtube")),
                   
@@ -21,6 +21,10 @@ dashboardPage(skin = "purple",
                   
                   menuItem(text = "Revenue Dataset",
                            tabName ="revenue_dataset",
+                           icon = icon("table")),
+                  
+                  menuItem(text = "Subscriber Dataset",
+                           tabName ="subscriber_dataset",
                            icon = icon("table")),
                   
                   menuItem(text = "Source Code",
@@ -64,7 +68,7 @@ dashboardPage(skin = "purple",
                     
                   )),
                   
-                  # --------- HALAMAN KEDUA: CHANNELS
+
                   tabItem(
                     tabName = "revenue",
                     fluidRow(
@@ -92,6 +96,11 @@ dashboardPage(skin = "purple",
                       box( width = 12,
                         plotlyOutput(outputId = "plot_1")
                       )
+                    ),
+                    fluidRow( 
+                      box( width = 12,
+                           plotlyOutput(outputId = "plot_4")
+                      )
                     )
                   )
                   ,
@@ -104,6 +113,11 @@ dashboardPage(skin = "purple",
                   tabItem(
                     tabName = "revenue_dataset",
                     DT::dataTableOutput(outputId = "table2")
+                  ),
+                  
+                  tabItem(
+                    tabName = "subscriber_dataset",
+                    DT::dataTableOutput(outputId = "table3")
                   )
                   
                 )
