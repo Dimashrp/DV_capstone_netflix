@@ -134,7 +134,7 @@ shinyServer(function(input,output){
   
   output$table1 <- renderDataTable({
 
-    datatable(data2,
+    datatable(data_2_fix,
               options = list(scrollX = TRUE))
 
   })
