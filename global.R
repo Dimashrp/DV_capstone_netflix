@@ -13,17 +13,22 @@ library(scales)
 
 data1 <- read_csv("data_input/netflix_revenue.csv")
 data2 <- read_csv("data_input/netflix_titles.csv")
+data3 <- read_csv("data_input/netflix_subscriber.csv")
 
 
 data_1_fix <- data1 %>%
   mutate(Area = as.factor(Area),
          Quarter = as.factor(substring(Years,0,2)),
-         Year = as.double(substring(Years,6,9)))
+         Year = as.numeric(substring(Years,6,9)))
 
 data_2_fix <- data2 %>%
   mutate(type = as.factor(type),
          rating = as.factor(rating)
          )
+data_3_fix <- data3 %>%
+  mutate(Area = as.factor(Area),
+         Quarter = as.factor(substring(Years,0,2)),
+         Year = as.numeric(substring(Years,6,9)))
 
 data_2_movie <- 
   data_2_fix %>% 
